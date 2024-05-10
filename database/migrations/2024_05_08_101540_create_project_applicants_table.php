@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('project_applicants', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('prjoect_id')->constrained()->onDelete('cascade');
+            $table->unsignedBigInteger('freelancer_id');
+            $table->text('message');
+            $table->string('status');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
