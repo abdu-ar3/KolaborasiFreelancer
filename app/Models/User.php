@@ -21,6 +21,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'avatar',
+        'occupation',
+        'connect',
     ];
 
     /**
@@ -44,5 +47,27 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function wallet()
+    {
+        return $this->hasOne(Wallet::class);
+    }
+
+    public function projects()
+    {
+        return $this->hasMany(Project::class, 'client_id', 'id')->orderByDesc('id');
+    }
+    
+    public function proposals()
+    {
+        return $this->hasMany(ProjectApplicant::class, 'freelancer_id', 'id')->orderByDesc('id');
+    }
+
+    public function hasAppliedToProject($projectId)
+    {
+        return ProjectApplicant::where('project_id', $projectId)
+        ->where('freelancer_id', $this->id)
+        ->exists();
     }
 }
