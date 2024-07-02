@@ -27,7 +27,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::middleware('can:withdraw wallet')->group(function(){
-        Route::get('/dashbaord/wallet', [DashboardController::class, 'withdraw'])->name('dashboard.wallet');
+        Route::get('/dashbaord/wallet', [DashboardController::class, 'wallet'])->name('dashboard.wallet');
         Route::get('/dashbaord/wallet/withdraw', [DashboardController::class, 'withdraw_wallet'])->name('dashboard.wallet.withdraw');
         Route::post('/dashbaord/wallet/withdraw/store', [DashboardController::class, 'withdraw_wallet_store'])->name('dashboard.wallet.withdraw.store');
     });
