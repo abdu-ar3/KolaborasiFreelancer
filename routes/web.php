@@ -27,23 +27,23 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::middleware('can:withdraw wallet')->group(function(){
-        Route::get('/dashbaord/wallet', [DashboardController::class, 'wallet'])->name('dashboard.wallet');
-        Route::get('/dashbaord/wallet/withdraw', [DashboardController::class, 'withdraw_wallet'])->name('dashboard.wallet.withdraw');
-        Route::post('/dashbaord/wallet/withdraw/store', [DashboardController::class, 'withdraw_wallet_store'])->name('dashboard.wallet.withdraw.store');
+        Route::get('/dashboard/wallet', [DashboardController::class, 'wallet'])->name('dashboard.wallet');
+        Route::get('/dashboard/wallet/withdraw', [DashboardController::class, 'withdraw_wallet'])->name('dashboard.wallet.withdraw');
+        Route::post('/dashboard/wallet/withdraw/store', [DashboardController::class, 'withdraw_wallet_store'])->name('dashboard.wallet.withdraw.store');
     });
 
     Route::middleware('can:topup wallet')->group(function(){
-        Route::get('/dashbaord/wallet/topup', [DashboardController::class, 'topup_wallet'])->name('dashboard.wallet.topup');
+        Route::get('/dashboard/wallet/topup', [DashboardController::class, 'topup_wallet'])->name('dashboard.wallet.topup');
         
-        Route::post('/dashbaord/wallet/topup/store', [DashboardController::class, 'topup_wallet_store'])->name('dashboard.wallet.topup.store');
+        Route::post('/dashboard/wallet/topup/store', [DashboardController::class, 'topup_wallet_store'])->name('dashboard.wallet.topup.store');
     });
     
     Route::middleware('can:apply job')->group(function(){
         Route::get('/apply/{project:slug}', [FrontController::class, 'apply_job'])->name('front.apply.job');
         Route::get('/apply/{project:slug}/submit', [FrontController::class, 'apply_job_store'])->name('front.apply.job.store');
         
-        Route::get('/dashbaord/proposals', [DashboardController::class, 'proposals'])->name('dashboard.proposals');
-        Route::get('/dashbaord/proposals_details/{project}/{projectApplicant}', [DashboardController::class, 'proposals_details'])->name('dashboard.proposals_details');
+        Route::get('/dashboard/proposals', [DashboardController::class, 'proposals'])->name('dashboard.proposals');
+        Route::get('/dashboard/proposals_details/{project}/{projectApplicant}', [DashboardController::class, 'proposals_details'])->name('dashboard.proposals_details');
     
     });
 
