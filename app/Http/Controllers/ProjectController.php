@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
+use GuzzleHttp\Psr7\Query;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProjectController extends Controller
 {
@@ -13,6 +15,19 @@ class ProjectController extends Controller
     public function index()
     {
         //
+        $user = Auth::user();
+
+        $projectsQuery = Project::with(['category', 'applicants'])->orderByDesc('id');
+
+        if($user->hasRole('project_client')){
+            $projectsQuery->whereHas('owner', function ($query) use ($user){
+                $query->where('client_id', $user->id);
+            });
+        }
+
+        $projects = $projectsQuery->paginate(10);
+
+        return view('admin.projects.index', compact('projects'));
     }
 
     /**
