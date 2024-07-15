@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ProjectTool;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ProjectToolController extends Controller
 {
@@ -61,5 +62,15 @@ class ProjectToolController extends Controller
     public function destroy(ProjectTool $projectTool)
     {
         //
+         DB::beginTransaction();
+
+        try {
+            $projectTool->delete();
+            DB::commit();
+            return redirect()->route('admin.project_tools', $projectTool->project_id);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->route('admin.project_tools', $projectTool->project_id);
+        }
     }
 }
