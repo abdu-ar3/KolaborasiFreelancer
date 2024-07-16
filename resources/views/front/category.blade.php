@@ -39,7 +39,7 @@
         <div class="flex flex-col gap-4 w-full">
             <div class="grid sm:grid-cols-3 gap-5">
                 @forelse($category->projects as $project)
-                <a href="details.html" class="card">
+                <a href="{{route('front.details', $project)}}" class="card">
                     <div
                         class="p-5 rounded-[20px] bg-white flex flex-col gap-5 hover:ring-2 hover:ring-[#6635F1] transition-all duration-300">
                         <div class="w-full h-[140px] rounded-[20px] overflow-hidden relative">
