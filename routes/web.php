@@ -39,8 +39,8 @@ Route::middleware('auth')->group(function () {
     });
     
     Route::middleware('can:apply job')->group(function(){
-        Route::get('/apply/{project:slug}', [FrontController::class, 'apply_job'])->name('front.apply.job');
-        Route::get('/apply/{project:slug}/submit', [FrontController::class, 'apply_job_store'])->name('front.apply.job.store');
+        Route::get('/apply/{project:slug}', [FrontController::class, 'apply_job'])->name('front.apply_job');
+        Route::post('/apply/{project:slug}/submit', [FrontController::class, 'apply_job_store'])->name('front.apply.job.store');
         
         Route::get('/dashboard/proposals', [DashboardController::class, 'proposals'])->name('dashboard.proposals');
         Route::get('/dashboard/proposals_details/{project}/{projectApplicant}', [DashboardController::class, 'proposals_details'])->name('dashboard.proposals_details');
