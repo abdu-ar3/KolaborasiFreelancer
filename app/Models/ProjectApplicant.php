@@ -22,7 +22,7 @@ class ProjectApplicant extends Model
         return $this->belongsTo(User::class, 'freelancer_id');
     }
 
-    public function projects()
+    public function project()
     {
         return $this->belongsTo(Project::class);
     }

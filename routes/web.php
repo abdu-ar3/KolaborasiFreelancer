@@ -43,7 +43,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/apply/{project:slug}/submit', [FrontController::class, 'apply_job_store'])->name('front.apply.job.store');
         
         Route::get('/dashboard/proposals', [DashboardController::class, 'proposals'])->name('dashboard.proposals');
-        Route::get('/dashboard/proposals_details/{project}/{projectApplicant}', [DashboardController::class, 'proposals_details'])->name('dashboard.proposals_details');
+        Route::get('/dashboard/proposals_details/{project}/{projectApplicant}', [DashboardController::class, 'proposal_details'])->name('dashboard.proposals_details');
     
     });
 
