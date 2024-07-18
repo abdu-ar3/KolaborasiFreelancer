@@ -62,7 +62,7 @@ Route::middleware('auth')->group(function () {
         Route::middleware('can:manage projects')->group(function(){
             Route::resource('/projects', ProjectController::class);
 
-            Route::post('/project/{projectApplicant}/completed', [ProjectController::class, 'complete_project_store'])->name('complete_project_store');
+            Route::post('/project/{projectApplicant}/completed', [ProjectController::class, 'complete_project_store'])->name('complete_project.store');
             Route::get('/project/{project}/tools', [ProjectController::class, 'tools'])->name('project_tools');
             Route::post('/project/{project}/tools/store', [ProjectController::class, 'tools_store'])->name('project_tools_store');
 

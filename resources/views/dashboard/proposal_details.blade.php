@@ -147,7 +147,7 @@
 
                     <div>
                         <h3 class="text-indigo-950 text-xl font-bold">Income Rp
-                            {{number_format($proposal->project->budget, 0,
+                            {{number_format($projectApplicant->project->budget, 0,
                             ',', '.')}}</h3>
                         <p class="text-slate-500 text-md">
                             Revenue akan ditambahkan kepada Wallet Anda apabila projek sudah selesai.

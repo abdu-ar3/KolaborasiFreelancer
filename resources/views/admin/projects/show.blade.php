@@ -45,7 +45,8 @@
                 @forelse($project->applicants as $applicant)
                 <div class="flex flex-row justify-between items-center">
                     <div class="flex flex-row items-center gap-x-3">
-                        <img src=" " alt="" class="rounded-full object-cover w-[70px] h-[70px]">
+                        <img src="{{Storage::url($applicant->freelancer->avatar)}}" alt=""
+                            class="rounded-full object-cover w-[70px] h-[70px]">
                         <div class="flex flex-col">
                             <h3 class="text-indigo-950 text-xl font-bold">{{$applicant->freelancer->name}}</h3>
                             <p class="text-slate-500 text-sm">{{$applicant->freelancer->occupation}}</p>
