@@ -37,7 +37,7 @@ class FrontController extends Controller
     {
         $user = Auth::user();
 
-        if($user->connect = 0) {
+        if($user->connect == 0) {
             return redirect()->route('front.out_of_connect');
         }
 
@@ -56,7 +56,7 @@ class FrontController extends Controller
             return redirect()->route('dashboard.proposals');
         }
 
-        if($user->connect = 0) {
+        if($user->connect == 0) {
             return redirect()->route('front.out_of_connect');
         } else {
             $user->decrement('connect', 1);
@@ -74,6 +74,10 @@ class FrontController extends Controller
 
 
         return redirect()->route('front.details', $project->slug);
+    }
 
+    public function out_of_connect()
+    {
+        return view('front.out_of_connect');
     }
 }
